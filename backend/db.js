@@ -28,7 +28,7 @@ const mongoose = require("mongoose");
 // //create a database
 // //mongoose.connect("mongodb://config.host+":"+config.port+'/'+config.db)
 const mongoDB = async () => {
-    await mongoose.connect("mongodb://127.0.0.1:27017/go_food", {
+    await mongoose.connect("mongodb+srv://nitish9318306726:admin931@cluster0.wo1mjin.mongodb.net/go_food?retryWrites=true&w=majority&appName=mernstack", {
         // useCreateIndex:true,
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -49,7 +49,8 @@ const mongoDB = async () => {
                     global.foodData2 = data;
                     global.foodCatogory= catdata;
 
-                    //console.log(global.foodCatogory);
+                    console.log(global.foodCatogory);
+                    console.log(global.foodData2);
                 }
             })
 
@@ -63,11 +64,13 @@ const mongoDB = async () => {
         })
 
         // }
-    })
+    }).catch((error)=>{
+            console.log(`unable to connect${error}`);
+        })
 }
 // .catch((error)=>{
-//     console.log(`unable to connect${error}`);
-// })
+// //     console.log(`unable to connect${error}`);
+// // })
 
 module.exports = mongoDB();
 
